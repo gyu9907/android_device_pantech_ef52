@@ -61,6 +61,7 @@ PRODUCT_COPY_FILES += \
 	device/pantech/ef52/idc/qwerty.idc:system/usr/idc/qwerty.idc \
 
 PRODUCT_COPY_FILES += \
+	device/pantech/ef52/thermald/thermald-8064_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald.conf \
 	device/pantech/ef52/thermald/thermald-8064_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-8064.conf \
 	device/pantech/ef52/thermald/thermald-8064ab_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-8064ab.conf
 
