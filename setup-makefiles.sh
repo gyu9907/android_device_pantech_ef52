@@ -36,7 +36,18 @@ for FILE in `cat proprietary-blobs.txt | grep -v ^# | grep -v ^$`; do
     if [ $COUNT = "0" ]; then
         LINEEND=""
     fi
-    echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+    case "$FILE" in
+        vendor/etc/firmware/*)
+            DEST="\$(TARGET_COPY_OUT_VENDOR)/firmware/${FILE#vendor/etc/firmware/}"
+            ;;
+        vendor/*)
+            DEST="\$(TARGET_COPY_OUT_VENDOR)/${FILE#vendor/}"
+            ;;
+        *)
+            DEST="system/$FILE"
+            ;;
+    esac
+    echo "    $OUTDIR/proprietary/$FILE:$DEST$LINEEND" >> $MAKEFILE
 done
 
 (cat << EOF) > ../../../$OUTDIR/$DEVICE-vendor.mk
