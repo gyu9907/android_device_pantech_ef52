@@ -141,7 +141,7 @@ lib/libuca-ril.so
 lib/hw/gps.msm8960.so
 lib/hw/lights.msm8960.so
 lib/hw/sensors.msm8960.so
-lib/hw/camera.msm8960.so
+lib/hw/camera.msm8960.so:lib/hw/camera.msm8960.vendor.so
 lib/hw/nfc.default.so
 
 # Pantech libs
