@@ -1,21 +1,46 @@
 #!/bin/sh
+set -e
 
 VENDOR=pantech
 DEVICE=ef52
-QSEECOMD_SHA256=5cbf7b7a9a9a3b5ba45bc9d7978f410f3d1ce20fca19f821e1b8b7b44ab80d98
+COMMON=msm8960-common
 
-BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
-rm -rf $BASE/*
+DEVICE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+ANDROID_ROOT=$(CDPATH= cd -- "$DEVICE_DIR/../../.." && pwd)
 
-for FILE in `cat proprietary-blobs.txt | grep -v ^# | grep -v ^$ `; do
-    DIR=`dirname $FILE`
-    if [ ! -d $BASE/$DIR ]; then
-        mkdir -p $BASE/$DIR
-    fi
-    adb pull /system/$FILE $BASE/$FILE
-    if [ "$FILE" = "bin/qseecomd" ]; then
-        echo "$QSEECOMD_SHA256  $BASE/$FILE" | sha256sum -c - || exit 1
-    fi
-done
-./copy_from_target.sh
-./setup-makefiles.sh
+extract_manifest() {
+    SCOPE=$1
+    MANIFEST=$2
+    BASE="$ANDROID_ROOT/vendor/$VENDOR/$SCOPE/proprietary"
+
+    rm -rf "$BASE"
+    mkdir -p "$BASE"
+
+    while IFS= read -r ENTRY || [ -n "$ENTRY" ]; do
+        case "$ENTRY" in
+            ""|"#"*) continue ;;
+        esac
+
+        EXPECTED_HASH=
+        case "$ENTRY" in
+            *"|"*)
+                EXPECTED_HASH=${ENTRY##*|}
+                ENTRY=${ENTRY%%|*}
+                ;;
+        esac
+
+        SOURCE=${ENTRY%%:*}
+        DESTINATION=${ENTRY#*:}
+        mkdir -p "$BASE/$(dirname "$SOURCE")"
+        adb pull "/$DESTINATION" "$BASE/$SOURCE"
+
+        if [ -n "$EXPECTED_HASH" ]; then
+            echo "$EXPECTED_HASH  $BASE/$SOURCE" | sha256sum -c -
+        fi
+    done < "$MANIFEST"
+}
+
+extract_manifest "$DEVICE" "$DEVICE_DIR/proprietary-blobs.txt"
+extract_manifest "$COMMON" "$DEVICE_DIR/../$COMMON/proprietary-blobs.txt"
+
+"$DEVICE_DIR/setup-makefiles.sh"
