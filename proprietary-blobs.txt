@@ -9,6 +9,7 @@ bin/mpdecision
 bin/qmuxd
 bin/qcks
 bin/qmiproxy
+# Pre-RPMB qseecomd; SHA-256: 5cbf7b7a9a9a3b5ba45bc9d7978f410f3d1ce20fca19f821e1b8b7b44ab80d98
 bin/qseecomd
 bin/radish
 bin/rild
