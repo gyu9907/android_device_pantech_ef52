@@ -19,6 +19,14 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!--
+         The msm8960 display HAL is exposed through HWC2On1Adapter.  Enabling
+         the color transform path restores the GPU color-matrix fallback used
+         by LiveDisplay on CM 14.1 when no /sys/class/graphics/fb0/rgb node is
+         available.
+    -->
+    <bool name="config_setColorTransformAccelerated">true</bool>
+
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N  1 zones as follows:
 
