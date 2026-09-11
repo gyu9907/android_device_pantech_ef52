@@ -16,3 +16,6 @@
 
 PRODUCT_MAKEFILES := \
     lineage_ef52:$(LOCAL_DIR)/lineage.mk
+
+COMMON_LUNCH_CHOICES := \
+    lineage_ef52-userdebug

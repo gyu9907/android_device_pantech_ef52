@@ -15,6 +15,9 @@
 #
 
 def FullOTA_InstallEnd(info):
-    info.script.Mount("/system");
-    info.script.AppendExtra('assert(run_program("/system/bin/device_check.sh") == 0);');
-    info.script.Unmount("/system");
+    info.script.Mount("/system")
+    # Recovery mounts the Android 11 system root at /system.
+    info.script.AppendExtra(
+        'assert(run_program("/sbin/sh", "/system/system/bin/device_check.sh", '
+        '"/system/system") == 0);')
+    info.script.Unmount("/system")
