@@ -24,6 +24,10 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/pantech/ef52/releasetools
 TARGET_KERNEL_SOURCE := kernel/pantech/msm8960
 TARGET_KERNEL_CONFIG := LineageOS_ef52_defconfig
 
+# LiveDisplay
+BOARD_VENDOR_SEPOLICY_DIRS += device/pantech/ef52/sepolicy
+DEVICE_MANIFEST_FILE += device/pantech/ef52/livedisplay/vendor.lineage.livedisplay@2.0-service.ef52.xml
+
 BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520 #20MB
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520 #20MB
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1782579200 #1.7GB

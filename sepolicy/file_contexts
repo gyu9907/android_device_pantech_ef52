@@ -1,0 +1,2 @@
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.ef52 u:object_r:hal_lineage_livedisplay_sysfs_exec:s0
+/sys/devices/virtual/graphics/fb0/cabc_ctl u:object_r:sysfs_livedisplay_tuneable:s0

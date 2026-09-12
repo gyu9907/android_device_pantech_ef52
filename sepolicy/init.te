@@ -1,0 +1,2 @@
+# init.qcom.rc also sets the ownership and mode of the CABC control.
+allow init sysfs_livedisplay_tuneable:file setattr;
