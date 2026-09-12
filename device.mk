@@ -72,19 +72,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=300
 
-# Enable unauthenticated root ADB for bring-up builds before Android starts.
-ifneq ($(filter userdebug eng,$(TARGET_BUILD_VARIANT)),)
-# Product properties take precedence over platform/Lineage defaults.
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.debuggable=1 \
-    persist.sys.usb.config=adb
-
-PRODUCT_COPY_FILES += \
-    device/pantech/ef52/init.ef52.adb.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.ef52.adb.rc
-endif
-
 # Inherit from msm8960-common
 $(call inherit-product, device/pantech/msm8960-common/msm8960.mk)
 
