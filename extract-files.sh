@@ -93,5 +93,5 @@ for SCOPE in "$DEVICE" "$COMMON"; do
     mkdir -p "$VENDOR_ROOT/$SCOPE"
     rm -rf "$VENDOR_ROOT/$SCOPE/proprietary"
     mv "$STAGING_ROOT/$SCOPE/proprietary" "$VENDOR_ROOT/$SCOPE/proprietary"
-    cp "$STAGING_ROOT/$SCOPE/"*.mk "$VENDOR_ROOT/$SCOPE/"
+    cp "$STAGING_ROOT/$SCOPE/"*.mk "$STAGING_ROOT/$SCOPE/Android.bp" "$VENDOR_ROOT/$SCOPE/"
 done

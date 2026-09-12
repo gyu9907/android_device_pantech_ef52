@@ -1,0 +1,13 @@
+python_binary_host {
+    name: "ef52_pn544_firmware_extract",
+    main: "extract_firmware.py",
+    srcs: ["extract_firmware.py"],
+}
+
+genrule {
+    name: "ef52_pn544_firmware_header",
+    tools: ["ef52_pn544_firmware_extract"],
+    srcs: [":ef52_pn544_firmware"],
+    out: ["pn544_firmware.h"],
+    cmd: "$(location ef52_pn544_firmware_extract) $(in) $(out)",
+}

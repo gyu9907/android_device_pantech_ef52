@@ -14,6 +14,8 @@
 
 -include device/pantech/msm8960-common/BoardConfigCommon.mk
 
+TARGET_VENDOR_PROP += device/pantech/ef52/vendor.prop
+
 
 # ReleaseTools
 TARGET_RELEASETOOLS_EXTENSIONS := device/pantech/ef52/releasetools
