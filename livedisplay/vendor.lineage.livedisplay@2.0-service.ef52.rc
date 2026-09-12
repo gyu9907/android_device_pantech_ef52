@@ -1,0 +1,10 @@
+on init
+    # This kernel needs an explicit sysfs label in addition to genfs_contexts.
+    restorecon /sys/devices/virtual/graphics/fb0/cabc_ctl
+    chown system system /sys/devices/virtual/graphics/fb0/cabc_ctl
+    chmod 0664 /sys/devices/virtual/graphics/fb0/cabc_ctl
+
+service vendor.livedisplay-hal-2-0-ef52 /vendor/bin/hw/vendor.lineage.livedisplay@2.0-service.ef52
+    class hal
+    user system
+    group system
