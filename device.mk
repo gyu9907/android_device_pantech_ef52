@@ -76,7 +76,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, device/pantech/msm8960-common/msm8960.mk)
 
 # PN544 uses the legacy NXP HCI stack and the proprietary board HAL.
-PRODUCT_PACKAGES += NfcPn544
+PRODUCT_PACKAGES += NfcPn544 Tag
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml
 
