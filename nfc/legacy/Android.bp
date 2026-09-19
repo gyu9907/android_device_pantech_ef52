@@ -1,3 +1,7 @@
+soong_namespace {
+    imports: ["vendor/pantech/ef52"],
+}
+
 python_binary_host {
     name: "ef52_pn544_firmware_extract",
     main: "extract_firmware.py",

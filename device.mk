@@ -18,6 +18,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 $(call inherit-product, vendor/pantech/ef52/ef52-vendor.mk)
 
+PRODUCT_SOONG_NAMESPACES += device/pantech/ef52/nfc/legacy
+
 DEVICE_PACKAGE_OVERLAYS += device/pantech/ef52/overlay
 
 # Device uses high-density artwork where available
